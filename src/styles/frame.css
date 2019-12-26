@@ -1,0 +1,42 @@
+.warpper{
+  display: flex;
+  flex-direction: column;
+}
+.footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 20px;
+  background-color: #fff;
+  text-align: center;
+  line-height: 20px;
+  font-weight: 600;
+}
+.content{
+  width: 80%;
+  margin: 0 auto;
+  flex-grow: 1;
+}
+.listStyle{
+  display: flex;
+  align-items: center;
+  background-color: lightblue;
+  padding: 5px 2px;
+  margin-bottom: 10px;
+}
+.listStyle span{
+  display: block;
+  padding: 0;
+  margin: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  margin-left: 20px;
+  line-height: 20px;
+  border-radius: 10px;
+  font-size: 8px;
+  cursor: pointer;
+}
+/* .content{
+
+} */
