@@ -19,8 +19,9 @@ class Header extends React.Component {
           <div>
             <span className="user_name">@ICHIKO</span>
           </div>
-          <div>
-            <Button type="danger">注 销</Button>
+          <div className="btnGropu">
+            <Button type="primary" className="record">记 录</Button>
+            <Button type="danger" className="logout">注 销</Button>
           </div>
         </div>
       </div>
