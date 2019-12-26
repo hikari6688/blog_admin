@@ -1,0 +1,45 @@
+.content{
+  color: #333333;
+}
+li{
+  list-style: none;
+}
+ul{
+  padding: 0;
+}
+.readMore{
+  display: inline;
+  padding: 5px 0;
+  border-bottom: 2px solid;
+  cursor: pointer;
+}
+.repo{
+  display: flex;
+  padding: 20px 0;
+  height: 170px;
+  align-items: center;
+}
+.repo_title{
+  font-size: 18px;
+  letter-spacing:2px;
+  font-weight: 600;
+}
+.repo_time{
+  display: block;
+  padding: 10px 0;
+  color: #999;
+}
+.repo_icon{
+  height: 120px;
+  width: 120px;
+  margin-right: 20px;
+}
+.repo_icon img{
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.repo_box{
+  text-align: left;
+}

@@ -1,19 +1,28 @@
 import React from 'react';
-import { Layout } from 'antd';
 import './App.css';
 import './styles/frame.css';
-import { position } from 'dom-helpers';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Publish from './components/view/publish';
 import Content from './components/layout/Content';
 import Header from './components/layout/Header';
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header></Header>
-        <section className="content">
-          {/* <Content name="Sara" price="22"></Content> */}
-        </section>
-        <footer className="footer">@ICHIKO</footer>
+        <Router>
+          <Switch>
+            <Header></Header>
+            <section className="content">
+              <Route path="/">
+                <Content />
+              </Route>
+              <Route path="/publish">
+                <Publish />
+              </Route>
+            </section>
+            <footer className="footer">@ICHIKO</footer>
+          </Switch>
+        </Router>
       </div>
     );
   }

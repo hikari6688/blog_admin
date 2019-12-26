@@ -1,3 +1,6 @@
+.header{
+  color: lightgoldenrodyellow;
+}
 .wrap{
   height: 60px;
   width: 80%;
@@ -32,12 +35,14 @@
   font-weight: 600;
 }
 .menu_list{
-  width: 300px;
   display: flex;
   justify-content: space-between;
   padding-left: 100px;
 }
-.menu_list>span{
+.menu_list>div{
+  padding: 50px;
+}
+.menu_list span{
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
