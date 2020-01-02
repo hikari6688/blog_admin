@@ -37,10 +37,9 @@
 .menu_list{
   display: flex;
   justify-content: space-between;
-  padding-left: 100px;
 }
 .menu_list>div{
-  padding: 50px;
+  padding: 0 5%;
 }
 .menu_list span{
   font-size: 16px;
@@ -56,6 +55,3 @@
 .record{
   margin-right: 20px;
 }
-/* .menu_list>span:hover{
- 
-} */

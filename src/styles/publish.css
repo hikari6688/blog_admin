@@ -1,3 +1,30 @@
 .publish{
   color: black;
 }
+.title{
+  width: 100px;
+}
+.rowFlex{
+  display: flex;
+  align-items: center;
+}
+.rowFlex>div{
+  padding: 0 10px;
+}
+.uploadCom_type{
+  display: flex;
+  padding: 10px 0;
+  /* justify-content: center; */
+}
+.getSubmit{
+  color: aliceblue;
+}
+.ant-form-item{
+  margin-bottom: 0;
+}
+.w-e-text{
+  overflow: visible !important;
+}
+.ant-select-dropdown{
+  z-index: 9999999;
+}

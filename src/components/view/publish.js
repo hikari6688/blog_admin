@@ -6,10 +6,26 @@ class Publish extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editorContent: ''
+      editorContent: '',
+      articalParams: {}
     };
   }
+  //修改数据的方法
+  setParams=(setKey,value)=>{
+    this.setState({ articalParams: { ...this.state.articalParams, [setKey]: value } });
+  }
   //下拉框的回调
+  onChange = value => {
+    this.setParams("type",value)
+  };
+  //点击发布
+  getSubmit = () => {
+    console.log(this.state.articalParams);
+  };
+  //填写标题
+  setArtical=(e)=>{
+    this.setParams("artical",e.target.value)
+  }
   componentDidMount = value => {
     const elemMenu = this.refs.editorElemMenu;
     const elemBody = this.refs.editorElemBody;
@@ -18,7 +34,6 @@ class Publish extends React.Component {
     editor.customConfig.onchange = html => {
       console.log(editor.txt.html());
       this.setState({
-        // editorContent: editor.txt.text()
         editorContent: editor.txt.html()
       });
     };
@@ -99,26 +114,12 @@ class Publish extends React.Component {
   };
   render() {
     const { Option } = Select;
-    function onChange(value) {
-      console.log(`selected ${value}`);
-    }
-    function onBlur() {
-      console.log('blur');
-    }
-
-    function onFocus() {
-      console.log('focus');
-    }
-
-    function onSearch(val) {
-      console.log('search:', val);
-    }
     return (
       <div className="uploadCom">
         <div className="uploadCom_type">
-          <Form>
+          <Form className="rowFlex">
             <Form.Item>
-              <Input placeholder="请输入文章标题" className="title"></Input>
+              <Input placeholder="请输入文章标题" onChange={ this.setArtical } className="title" style={{ width: '200px' }}></Input>
             </Form.Item>
             <Form.Item>
               <Select
@@ -126,10 +127,7 @@ class Publish extends React.Component {
                 style={{ width: 200 }}
                 placeholder="Select a person"
                 optionFilterProp="children"
-                onChange={onChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                onSearch={onSearch}
+                onChange={this.onChange}
                 filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
               >
                 <Option value="jack">Jack</Option>
@@ -139,6 +137,11 @@ class Publish extends React.Component {
             </Form.Item>
             <Form.Item>
               <Switch checkedChildren="公开" unCheckedChildren="私人" defaultChecked />
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" className="getSubmit" onClick={this.getSubmit}>
+                发 布
+              </Button>
             </Form.Item>
           </Form>
         </div>
