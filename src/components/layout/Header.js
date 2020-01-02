@@ -1,6 +1,11 @@
-import React from 'react';
 import '../../styles/header.css';
-import {Link} from 'react-router-dom';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import { Button } from 'antd';
 class Header extends React.Component {
   render() {
@@ -30,9 +35,11 @@ class Header extends React.Component {
             <span className="user_name">@ICHIKO</span>
           </div>
           <div className="btnGropu">
+          <Link to="/publish">
             <Button type="primary" className="record">
               记 录
             </Button>
+          </Link>
             <Button type="danger" className="logout">
               注 销
             </Button>
