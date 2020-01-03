@@ -39,7 +39,7 @@
   justify-content: space-between;
 }
 .menu_list>div{
-  padding: 0 5%;
+  padding: 0 20px;
 }
 .menu_list span{
   font-size: 16px;

@@ -32,10 +32,7 @@ class Publish extends React.Component {
     const editor = new E(elemMenu, elemBody);
     // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
     editor.customConfig.onchange = html => {
-      console.log(editor.txt.html());
-      this.setState({
-        editorContent: editor.txt.html()
-      });
+      this.setParams("content",editor.txt.html())
     };
     editor.customConfig.menus = [
       'head', // 标题
@@ -125,14 +122,15 @@ class Publish extends React.Component {
               <Select
                 showSearch
                 style={{ width: 200 }}
-                placeholder="Select a person"
+                placeholder="请选择文章分类"
                 optionFilterProp="children"
                 onChange={this.onChange}
                 filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
               >
-                <Option value="jack">Jack</Option>
-                <Option value="lucy">Lucy</Option>
-                <Option value="tom">Tom</Option>
+                <Option value="1">前端学习</Option>
+                <Option value="2">后端学习</Option>
+                <Option value="3">语言学习</Option>
+                <Option value="4">感悟记录</Option>
               </Select>
             </Form.Item>
             <Form.Item>

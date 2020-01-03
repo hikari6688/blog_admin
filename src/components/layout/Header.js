@@ -9,16 +9,16 @@ class Header extends React.Component {
         <div className="menu_list">
           {/* 菜单 */}
           <div>
-            <span>@#$%^%?</span>
+            <span>前端学习</span>
           </div>
           <div>
-            <span>@#$%^%?</span>
+            <span>后端学习</span>
           </div>
           <div>
-            <span>@#$%^%?</span>
+            <span>语言学习</span>
           </div>
           <div>
-            <span>@#$%^%?</span>
+            <span>感悟&记录</span>
           </div>
         </div>
         <div className="top_left">

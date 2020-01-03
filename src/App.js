@@ -13,10 +13,10 @@ class App extends React.Component {
           <Header></Header>
           <section className="content">
             <Switch>
-              <Route exact path="/">
+              <Route  path="/" >
                 <Content />
               </Route>
-              <Route exact path="/publish">
+              <Route  path="/publish">
                 <Publish />
               </Route>
             </Switch>

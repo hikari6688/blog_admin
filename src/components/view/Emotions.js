@@ -1,9 +1,4 @@
 import React from 'react';
-import JavaScript from '../view/JavaScript';
-import Emotions from '../view/Emotions';
-import Language from '../view/Language';
-
-
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 class Content extends React.Component {
   constructor(props) {
@@ -23,25 +18,11 @@ class Content extends React.Component {
   //方法可以写在这里 这种写法不需要bind this
   componentDidMount() {
     /*生命周期 挂载时触发*/
-    console.log('加载content组件');
+    console.log('加载Emotion组件');
   }
   render() {
     return (
-      <Router>
-        <div className="content">
-          <Switch>
-            <Route  path="/javascript">
-              <JavaScript />
-            </Route>
-            <Route  path="/emotion">
-              <Emotions />
-            </Route>
-            <Route  path="/lanauage">
-              <Language />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+     <div>this is EmotionCom</div>
     );
   }
 }
