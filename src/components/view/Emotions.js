@@ -13,7 +13,6 @@ class Content extends React.Component {
     只有state和prop改变才触发update 
 
     */
-    this.state = {};
   }
   //方法可以写在这里 这种写法不需要bind this
   componentDidMount() {

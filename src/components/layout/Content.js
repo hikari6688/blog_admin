@@ -2,8 +2,8 @@ import React from 'react';
 import JavaScript from '../view/JavaScript';
 import Emotions from '../view/Emotions';
 import Language from '../view/Language';
-
-
+import Publish from '../view/Publish';
+import { Spin } from 'antd';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 class Content extends React.Component {
   constructor(props) {
@@ -28,19 +28,21 @@ class Content extends React.Component {
   render() {
     return (
       <Router>
-        <div className="content">
-          <Switch>
-            <Route  path="/javascript">
-              <JavaScript />
-            </Route>
-            <Route  path="/emotion">
-              <Emotions />
-            </Route>
-            <Route  path="/lanauage">
-              <Language />
-            </Route>
-          </Switch>
-        </div>
+        <Spin spinning={true} size="large">
+          <div className="content">
+            <Switch>
+              <Route path="/home/javascript">
+                <JavaScript />
+              </Route>
+              <Route path="/home/emotion">
+                <Emotions />
+              </Route>
+              <Route path="/home/lanauage">
+                <Language />
+              </Route>
+            </Switch>
+          </div>
+        </Spin>
       </Router>
     );
   }
