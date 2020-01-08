@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { observable,computed } from 'mobx';
 class Todo {
   id = Math.random();
   @observable title = '';
@@ -9,3 +9,4 @@ class Todo {
     return this.price * this.amount;
   }
 }
+ 
