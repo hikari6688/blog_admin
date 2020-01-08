@@ -3,6 +3,7 @@ import './App.css';
 import './styles/frame.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { Spin } from 'antd';
+import './store/Store'
 import Publish from './components/view/Publish';
 import Content from './components/layout/Content';
 import Header from './components/layout/Header';
