@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from 'antd';
 import { BrowserRouter as Router, Switch, Route, Link, useParams, useRouteMatch } from 'react-router-dom';
 import '../../styles/javaScript.css';
-import { Todo } from '../../store/Store';
+import  Todo  from '../../store/Store';
 // import '../../store/Store'
 class Content extends React.Component {
   constructor(props) {
