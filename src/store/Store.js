@@ -9,4 +9,7 @@ class Todo {
     return this.price * this.amount;
   }
 }
+export default{
+  Todo:new Todo()
+}
  

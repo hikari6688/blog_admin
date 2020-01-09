@@ -2,19 +2,11 @@ import React from 'react';
 import { Icon } from 'antd';
 import { BrowserRouter as Router, Switch, Route, Link, useParams, useRouteMatch } from 'react-router-dom';
 import '../../styles/javaScript.css';
+import { Todo } from '../../store/Store';
+// import '../../store/Store'
 class Content extends React.Component {
   constructor(props) {
     super(props);
-    /*
-    state 中的值和渲染有关。
-    其他无关数据可以放到外面。
-
-    比如这里的 symbol select现在是非受控组件，value和view没有绑定
-    num1和num2是受控组件，value和view关联
-    
-    只有state和prop改变才触发update 
-
-    */
     this.state = {
       /* 后端返回数据title id */
       noteList: [
@@ -34,16 +26,12 @@ class Content extends React.Component {
       listDom: ''
     };
   }
-  symbol = '+';
   //方法可以写在这里 这种写法不需要bind this
   componentDidMount() {
-    console.log('加载script组件')
     /*生命周期 挂载时触发*/
     this.renderPage();
-    let { path, url } = useRouteMatch();
-    console.log("path:",path,"url",url)
+    console.log(Todo,'this is received form mobx');
   }
-
   /*渲染页面的方法*/
   renderPage = () => {
     const traversalDom = this.state.noteList.map(item => {
