@@ -1,7 +1,12 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react';
 import E from 'wangeditor'; //富文本编辑器
 import { Form, Input, Button, Switch, Upload, Icon, message, Select } from 'antd';
 import '../../styles/publish.css';
+
+
+@inject('store','a')
+@observer
 class Publish extends React.Component {
   constructor(props) {
     super(props);
@@ -11,28 +16,30 @@ class Publish extends React.Component {
     };
   }
   //修改数据的方法
-  setParams=(setKey,value)=>{
+  setParams = (setKey, value) => {
     this.setState({ articalParams: { ...this.state.articalParams, [setKey]: value } });
-  }
+  };
   //下拉框的回调
   onChange = value => {
-    this.setParams("type",value)
+    this.setParams('type', value);
   };
   //点击发布
   getSubmit = () => {
     console.log(this.state.articalParams);
   };
   //填写标题
-  setArtical=(e)=>{
-    this.setParams("artical",e.target.value)
-  }
+  setArtical = e => {
+    this.setParams('artical', e.target.value);
+  };
   componentDidMount = value => {
+    const { store } = this.props;
+    console.log(store.id);
     const elemMenu = this.refs.editorElemMenu;
     const elemBody = this.refs.editorElemBody;
     const editor = new E(elemMenu, elemBody);
     // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
     editor.customConfig.onchange = html => {
-      this.setParams("content",editor.txt.html())
+      this.setParams('content', editor.txt.html());
     };
     editor.customConfig.menus = [
       'head', // 标题
@@ -116,7 +123,7 @@ class Publish extends React.Component {
         <div className="uploadCom_type">
           <Form className="rowFlex">
             <Form.Item>
-              <Input placeholder="请输入文章标题" onChange={ this.setArtical } className="title" style={{ width: '200px' }}></Input>
+              <Input placeholder="请输入文章标题" onChange={this.setArtical} className="title" style={{ width: '200px' }}></Input>
             </Form.Item>
             <Form.Item>
               <Select
@@ -145,11 +152,7 @@ class Publish extends React.Component {
         </div>
         <div className="shop">
           <div className="text-area">
-            <div
-              ref="editorElemMenu"
-              style={{ backgroundColor: '#f1f1f1', border: '1px solid #ccc' }}
-              className="editorElem-menu"
-            ></div>
+            <div ref="editorElemMenu" style={{ backgroundColor: '#f1f1f1', border: '1px solid #ccc' }} className="editorElem-menu"></div>
             <div
               style={{
                 padding: '0 10px',
