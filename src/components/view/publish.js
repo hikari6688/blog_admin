@@ -1,5 +1,5 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
+import { inject, observer, action } from 'mobx-react';
 import E from 'wangeditor'; //富文本编辑器
 import { Form, Input, Button, Switch, Upload, Icon, message, Select } from 'antd';
 import '../../styles/publish.css';
@@ -31,9 +31,17 @@ class Publish extends React.Component {
   setArtical = e => {
     this.setParams('artical', e.target.value);
   };
+  changeState=()=>{
+    store.change()
+    console.log(store.title)
+  }
   componentDidMount = value => {
     const { store } = this.props;
-    console.log(store.id);
+    // this.changeState();
+    console.log(store.title);
+    store.change()
+    console.log(store.title)
+
     const elemMenu = this.refs.editorElemMenu;
     const elemBody = this.refs.editorElemBody;
     const editor = new E(elemMenu, elemBody);
