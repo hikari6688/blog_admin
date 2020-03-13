@@ -1,0 +1,66 @@
+@import '~antd/dist/antd.css';
+.App {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.App-logo {
+  height: 40vmin;
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-link {
+  color: #09d3ac;
+}
+body,
+html {
+  font-family: 'Microsoft YaHei';
+  color: #272726;
+  background-color: #212121;
+  height: 100vh;
+  width: 100vw;
+}
+.formBox {
+  background-color: #fff;
+  width: 500px;
+  border: 1px solid lightslategray;
+  padding: 20px 68px;
+  border-radius: 6px;
+  position: absolute;
+  top: 50%; /*偏移*/
+  transform: translateY(-50%);
+  left: 50%;
+  margin-left: -250px;
+  /* left: 50%;
+  transform: translateX(-50%); */
+}
+.login_btn {
+  width: 90%;
+  background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
+  /* background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); */
+  border: none;
+}
+.login_tag {
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  color: #212121;
+  font-weight: 600;
+}
+.btn_wrap{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
