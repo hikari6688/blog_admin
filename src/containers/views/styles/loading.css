@@ -28,7 +28,7 @@ body,
 html {
   font-family: 'Microsoft YaHei';
   color: #272726;
-  background-color: #212121;
+  /* background-color: #212121; */
   height: 100vh;
   width: 100vw;
 }
