@@ -1,0 +1,19 @@
+.info_btn {
+  background-color: #4fd6b4;
+  border: none;
+  color: #fff;
+}
+.info_btn:hover{
+background-color: #5bd8b9d1;
+color: #fff;
+}
+.btn_group{
+  display: flex;
+  justify-content: space-around;
+}
+.blog_search{
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

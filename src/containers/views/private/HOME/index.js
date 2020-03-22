@@ -59,7 +59,7 @@ class Home extends React.Component {
           </Header>
           <Content style={{ margin: '0 16px' }}>
             <Crumbs></Crumbs>
-            <Main className="main_wrapper"></Main>
+            <Main className="main_wrapper"/>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Azuna ©2020 Base on Koa&amp;React</Footer>
         </Layout>

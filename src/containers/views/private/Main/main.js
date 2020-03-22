@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, HashRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, HashRouter,Redirect } from 'react-router-dom';
 import './main.css';
 import Blog from '../Blog/blog';
 class Main extends React.Component {
@@ -11,12 +11,10 @@ class Main extends React.Component {
   render() {
     return (
       <div className="main_wrapper">
-        {/* <HashRouter>
           <Switch>
-            <Route path="/home/blog" Component={Blog} />
+            {/* <Route path="/home/blog"    render={() => <Redirect to={'/home/blog/list'} />}/> */}
+            <Route path="/home/blog"  component={ Blog }  />
           </Switch>
-        </HashRouter> */}
-        <Blog></Blog>
       </div>
     );
   }
