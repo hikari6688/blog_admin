@@ -12,7 +12,7 @@ class SiderMeun extends React.Component {
     return (
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
         <Menu.Item key="1">
-          <Link to="/home/blog">
+          <Link to="/home/blog/list">
             <Icon type="rocket" />
             <span>博客管理</span>
           </Link>

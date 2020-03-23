@@ -61,7 +61,7 @@ class Home extends React.Component {
             <Crumbs></Crumbs>
             <Main className="main_wrapper"/>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Azuna ©2020 Base on Koa&amp;React</Footer>
+          <Footer style={{ textAlign: 'center' }}>Azuna Admin ©2020 Base on Koa&amp;React</Footer>
         </Layout>
       </Layout>
     );

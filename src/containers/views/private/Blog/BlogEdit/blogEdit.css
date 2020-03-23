@@ -1,0 +1,7 @@
+.blog_edit_config{
+  display: flex;
+  justify-content: flex-end;
+}
+.btn_group{
+  padding: 20px 0;
+}

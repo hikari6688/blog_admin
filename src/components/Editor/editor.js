@@ -1,6 +1,7 @@
 import React from 'react';
-import Editor from 'wangeditor'; //富文本编辑器
+import E from 'wangeditor'; //富文本编辑器
 import { inject, observer, action } from 'mobx-react';
+import './editor.css'
 @inject('store','a')
 @observer
 class Editorx extends React.Component {
