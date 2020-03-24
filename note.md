@@ -391,31 +391,36 @@ vscode 常用快捷键(解放鼠标)
 4.ctrl+g 可以跳到输入的行数
 5.ctrl+上下方向键可以移动代码整体位置(光标不动!111)
 
+react 组件传参
+一.存在 store 中共享
+二.父子组件传参 1.通过 pros 传参 把整个父组件带过去，子组件再去调父组件的方法把参数传过去
+
+```javascript
+<Children parent={this} />;
+this.props.parent.getChildrenMsg(this, this.state.msg);
+```
 
 react 模版
 {
-  "react-template": {
-    "prefix": "re",
-    "body": [
-			"import React from \"react\";",
-			"",
-      "class Component extends React.Component{",
-      "\t\tconstructor(props){",
-      "\t\t\t\tsuper(props);",
-			"\t\t\t\tthis.state={}",
-			"\t\t}\n",
-      "\tcomponentDidMount(){}",
-			"\trender(){",
-			"\t\treturn (",
-			"\t\t\t\t$1",
-			"\t\t\t);",
-			"\t}",
-			"}\n",
-			"export default Name;"
-    ],
-    "description": "react class template"
-  }
+"react-template": {
+"prefix": "re",
+"body": [
+"import React from \"react\";",
+"",
+"class Component extends React.Component{",
+"\t\tconstructor(props){",
+"\t\t\t\tsuper(props);",
+"\t\t\t\tthis.state={}",
+"\t\t}\n",
+"\tcomponentDidMount(){}",
+"\trender(){",
+"\t\treturn (",
+"\t\t\t\t$1",
+"\t\t\t);",
+"\t}",
+"}\n",
+"export default Name;"
+],
+"description": "react class template"
 }
-
-
-
+}

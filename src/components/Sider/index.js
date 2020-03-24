@@ -22,7 +22,7 @@ class SiderMeun extends React.Component {
           <span>数据字典</span>
         </Menu.Item>
         <Menu.Item key="10">
-          <Icon type="reddit" />
+          <Icon type="robot" />
           <span>角色管理</span>
         </Menu.Item>
         <SubMenu

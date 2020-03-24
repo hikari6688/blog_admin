@@ -34,17 +34,18 @@ class Editorx extends React.Component {
   };
   componentDidMount = value => {
     const { store } = this.props;
+     console.log(store)
     // this.changeState();
     console.log(store.title);
     store.change();
     console.log(store.title);
-
     const elemMenu = this.refs.editorElemMenu;
     const elemBody = this.refs.editorElemBody;
     const editor = new E(elemMenu, elemBody);
     // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
     editor.customConfig.onchange = html => {
       this.setParams('content', editor.txt.html());
+      this.props.parent.getMessage(this.state.articalParams.content)
     };
     editor.customConfig.menus = [
       'head', // 标题

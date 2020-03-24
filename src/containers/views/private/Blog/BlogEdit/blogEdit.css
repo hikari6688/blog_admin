@@ -1,7 +1,26 @@
 .blog_edit_config{
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  padding: 20px 20px;
 }
 .btn_group{
   padding: 20px 0;
+}
+.tag_list{
+  display: flex;
+}
+.config_left{
+  display: flex;
+}
+.config_left{
+  display: flex;
+}
+.ant-tag{
+  height: 26px;
+  line-height: 24px;
+}
+.config_right{
+  width: 220px;
+  display: flex;
+  justify-content: space-between;
 }
