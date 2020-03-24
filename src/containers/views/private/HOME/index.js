@@ -17,7 +17,7 @@ class Home extends React.Component {
   }
   componentDidMount() {
     console.log('enter home');
-    this.moveNyanCat();
+    // this.moveNyanCat();
   }
   onCollapse = collapsed => {
     console.log(collapsed);

@@ -396,9 +396,32 @@ react 组件传参
 二.父子组件传参 1.通过 pros 传参 把整个父组件带过去，子组件再去调父组件的方法把参数传过去
 
 ```javascript
+//子组件调用父组件方法
 <Children parent={this} />;
 this.props.parent.getChildrenMsg(this, this.state.msg);
+//父组件调用子组件方法
+子组件注册ref实例 在调用实例的方法
+//父组件给自组件传参 
+直接props传参
+//自组件给父组件传参
 ```
+
+回顾vue的父子组件通信
+1.父组件向自组件传参：通过props <parennt :childMsg='message' /> 
+子组件注册props 
+props: {
+    childMsg: {
+        type: Array,
+        default: [0,0,0] //这样可以指定默认的值
+    }
+}
+
+2.自组件向父组件通信 通过$emit
+<child @upup="change" :msg="msg"></child>
+this.$emit('upup','hehe')
+3.父组件调用自组件的方法
+this.$refs.ref.method调用
+
 
 react 模版
 {

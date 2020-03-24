@@ -1,6 +1,7 @@
 import React from 'react';
 import Editorx from '../../../../../components/Editor/editor';
 import { Button, Icon, Tag, Input, Select, message } from 'antd';
+import  { api_postEssay } from '../../../../../api/api'
 import './blogEdit.css';
 const { Option } = Select;
 class BlogEdit extends React.Component {
@@ -10,7 +11,8 @@ class BlogEdit extends React.Component {
       tagList: [],
       inputVisible: false,
       tagValue: '',
-      content:''//子组件
+      content:'',//子组件
+      type:''
     };
     this.colorMap = ['#f50', '#2db7f5', '#87d068'];
     this.saveInputRef = el => (this.t_put = el);
@@ -18,21 +20,19 @@ class BlogEdit extends React.Component {
   addTag = () => {
     let { tagList } = this.state;
     tagList = [...tagList, this.state.tagValue];
-    this.setState({ tagList, inputVisible: false, tagValue: '' });
+    this.setState({ tagList, inputVisible: false, tagValue: '' },()=>{
+      console.log(tagList);
+    });
   };
   closeTag(index) {
-    console.log(index);
     const { tagList } = this.state;
     tagList.splice(index, 1);
     this.setState({
       tagList
     },()=>{
-      console.log(this.state.tagList)
+      console.log(this.state.tagList);
     });
-    
-    // console.log(this.state.tagValue);
-    // const t = this.tagList;
-  }
+  };
   showInput = () => {
     //最多三个标签
     if (this.state.tagList.length == 3 || this.state.tagList.length > 3) {
@@ -46,28 +46,33 @@ class BlogEdit extends React.Component {
   };
   onChange = value => {
     console.log(`selected ${value}`);
+    this.setState({ type:value });
   };
 
-  onBlur = () => {
-    console.log('blur');
-  };
-
-  onFocus = () => {
-    console.log('focus');
-  };
+ 
 
   onSearch = val => {
     console.log('search:', val);
   };
   getMessage=val=>{
-    console.log(val)
+    this.setState({ content:val });
+  }
+  submit=()=>{
+    console.log(this.state.content)//rich text
+    console.log(this.state.tagList)//taglist
+    console.log(this.state.type)//articlType
+    api_postEssay({
+      
+    }).then(res=>{
+
+    })
   }
   componentDidMount() {}
   render() {
     return (
       <div className="blog_edit">
         <div className="blog_edit_main">
-          <Editorx parent={ this } sendMessage={ this.getMessage() }/>
+          <Editorx parent={ this } />
         </div>
         <div className="blog_edit_config">
           <div className="config_left">
@@ -76,7 +81,7 @@ class BlogEdit extends React.Component {
                 return (
                   <Tag
                     color={this.colorMap[index]}
-                    key={index}
+                    key={item+index}
                     closable
                     onClose={() => {
                       this.closeTag(index);
@@ -101,7 +106,7 @@ class BlogEdit extends React.Component {
                 value={this.state.tagValue}
                 onChange={this.handleInputChange}
                 onBlur={this.addTag}
-                onPressEnter={this.handleInputConfirm}
+                onPressEnter={this.addTag}
               />
             )}
           </div>
@@ -112,16 +117,14 @@ class BlogEdit extends React.Component {
               placeholder="文章类型"
               optionFilterProp="children"
               onChange={this.onChange}
-              onFocus={this.onFocus}
-              onBlur={this.onBlur}
               onSearch={this.onSearch}
               filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
             >
-              <Option value="jack">前端</Option>
-              <Option value="lucy">语言</Option>
-              <Option value="tom">后端</Option>
+              <Option value="1">前端</Option>
+              <Option value="2">语言</Option>
+              <Option value="3">后端</Option>
             </Select>
-            <Button icon="rocket" type="primary">
+            <Button icon="rocket" type="primary" onClick={ this.submit }>
               发布
             </Button>
           </div>
