@@ -3,6 +3,12 @@
   justify-content: space-between;
   padding: 20px 20px;
 }
+.blog_edit{
+
+}
+.blog_edit_form{
+  padding: 0 10px 10px 30px;
+}
 .btn_group{
   padding: 20px 0;
 }
@@ -23,4 +29,16 @@
   width: 220px;
   display: flex;
   justify-content: space-between;
+}
+.title{
+  width: 260px;
+}
+.intro{
+  width: 500px;
+}
+.blog_edit_main{
+  width: 800px;
+}
+.title_n_intro{
+ 
 }
