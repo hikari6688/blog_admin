@@ -1,20 +1,23 @@
 import React from 'react';
 import Editorx from '../../../../../components/Editor/editor';
-import { Redirect, Route, Switch } from "react-router"
+import { Redirect, Route, Switch } from 'react-router';
 import { Button, Icon, Tag, Input, Select, message, Form, PageHeader } from 'antd';
 import { api_postEssay } from '../../../../../api/api';
 import './blogEdit.css';
 const { Option } = Select;
 const { TextArea } = Input;
+@Form.create()
 class BlogEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tagList: [],
+      tagList: [], //标签
       inputVisible: false,
-      tagValue: '',
+      tagValue: '', //单项标签栏
+      title: '', //标题
       content: '', //子组件
-      type: ''
+      type: '', //类型
+      intro: '' //简介
     };
     this.colorMap = ['#f50', '#2db7f5', '#87d068'];
     this.saveInputRef = el => (this.t_put = el);
@@ -60,41 +63,96 @@ class BlogEdit extends React.Component {
   getMessage = val => {
     this.setState({ content: val });
   };
+  titleChange = e => {
+    this.setState({ title: e.target.value });
+  };
+  introChange = e => {
+    this.setState({ intro: e.target.value });
+  };
   submit = () => {
     console.log(this.state.content); //rich text
     console.log(this.state.tagList); //taglist
     console.log(this.state.type); //articlType
-    api_postEssay({}).then(res => {});
+    console.log(this.state);
+    api_postEssay({
+      title: this.state.title,
+      intro: this.state.intro,
+      tag:JSON.stringify(this.state.tagList),
+      type: this.state.type,
+      content: this.state.content,
+      intro: this.state.intro
+    }).then(res => {
+      console.log(res)
+    });
   };
   componentDidMount() {}
   render() {
+    const { getFieldDecorator } = this.props.form;
     return (
       <div className="blog_edit">
         <div>
-          <PageHeader
-            style={{
-             
-            }}
-            onBack={() => this.props.history.goBack()}
-            title="撰写博客"
-          />
+          <PageHeader style={{}} onBack={() => this.props.history.goBack()} title="撰写博客" />
         </div>
-        <div className='blog_edit_form'>
-          <Form >
+        <div className="blog_edit_form">
+          <Form>
             <div className="title_n_intro">
               <div className="title">
                 <Form.Item label="标 题:">
-                  <Input placeholder="请输入文章标题"></Input>
+                  {/* {getFieldDecorator('title', {
+                    rules: [
+                      {
+                        required: true,
+                        min: 2,
+                        max: 60,
+                        message: '用户名为2-16个字符'
+                      }
+                    ]
+                  })(
+                    <Input
+                      placeholder="请输入文章标题"
+                      type="text"
+                      maxLength={16}
+                      value={this.state.title}
+                      onChange={this.titleChange}
+                    />
+                  )} */}
+                  <Input
+                    placeholder="请输入文章标题"
+                    type="text"
+                    maxLength={16}
+                    value={this.state.title}
+                    onChange={this.titleChange}
+                  />
                 </Form.Item>
               </div>
-              <div className="intro" >
+              <div className="intro">
                 <Form.Item label="简 介:">
-                  <TextArea rows={4} placeholder="请输入文章简介"></TextArea>
+                  {/* {getFieldDecorator('intro', {
+                    rules: [
+                      {
+                        required: true,
+                        max: 80,
+                        message: '请输入简介内容(80子以内)'
+                      }
+                    ]
+                  })(<TextArea rows={3} placeholder="请输入文章简介"></TextArea>)} */}
+                  <TextArea rows={3} placeholder="请输入文章简介" onChange={this.introChange}></TextArea>
                 </Form.Item>
               </div>
             </div>
             <div className="blog_edit_main">
               <Form.Item label="正 文:">
+                {/* {
+                  (getFieldDecorator('content', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请输入文章正文'
+                      }
+                    ]
+                  }),
+                  (<Editorx parent={this} />))
+                } */}
                 <Editorx parent={this} />
               </Form.Item>
             </div>

@@ -1,44 +1,53 @@
-.blog_edit_config{
+.blog_edit_config {
   display: flex;
   justify-content: space-between;
   padding: 20px 20px;
 }
-.blog_edit{
-
+.blog_edit {
 }
-.blog_edit_form{
+.blog_edit_form {
   padding: 0 10px 10px 30px;
 }
-.btn_group{
+.btn_group {
   padding: 20px 0;
 }
-.tag_list{
+.tag_list {
   display: flex;
 }
-.config_left{
+.config_left {
   display: flex;
 }
-.config_left{
+.config_left {
   display: flex;
 }
-.ant-tag{
+.ant-tag {
   height: 26px;
   line-height: 24px;
 }
-.config_right{
+.config_right {
   width: 220px;
   display: flex;
   justify-content: space-between;
 }
-.title{
+.title {
   width: 260px;
 }
-.intro{
+.intro {
   width: 500px;
 }
-.blog_edit_main{
+.blog_edit_main {
   width: 800px;
 }
-.title_n_intro{
- 
+.title_n_intro {
+}
+.ant-row {
+  display: flex;
+}
+.ant-form-item-control-wrapper {
+  flex: 1;
+}
+.ant-form-item-label > label {
+  color: rgba(27, 27, 27, 0.85);
+  font-size: 15px;
+  font-weight: 500;
 }

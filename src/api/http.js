@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import qs from 'qs';
-const baseUrl = 'http://192.168.0.103:8866';
+const baseUrl = 'http://192.168.1.73:8866';
 const http = Axios.create({
   baseURL: baseUrl, // api的base_url
   timeout: 30000 // 请求超时时间
