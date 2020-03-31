@@ -1,7 +1,7 @@
 import React from 'react';
 import Editorx from '../../../../../components/Editor/editor';
 import { Redirect, Route, Switch } from 'react-router';
-import { Button, Icon, Tag, Input, Select, message, Form, PageHeader } from 'antd';
+import { Button, Icon, Tag, Input, Select, message, Form, PageHeader, Upload } from 'antd';
 import { api_postEssay } from '../../../../../api/api';
 import './blogEdit.css';
 const { Option } = Select;
@@ -17,7 +17,9 @@ class BlogEdit extends React.Component {
       title: '', //标题
       content: '', //子组件
       type: '', //类型
-      intro: '' //简介
+      intro: '', //简介
+      loading: false,
+      imageUrl:''//封面
     };
     this.colorMap = ['#f50', '#2db7f5', '#87d068'];
     this.saveInputRef = el => (this.t_put = el);
@@ -69,6 +71,37 @@ class BlogEdit extends React.Component {
   introChange = e => {
     this.setState({ intro: e.target.value });
   };
+  getBase64 = (img, callback) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result));
+    reader.readAsDataURL(img);
+  };
+  beforeUpload = file => {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!');
+    }
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      message.error('Image must smaller than 2MB!');
+    }
+    return isJpgOrPng && isLt2M;
+  };
+  handleChange = info => {
+    if (info.file.status === 'uploading') {
+      this.setState({ loading: true });
+      return;
+    }
+    if (info.file.status === 'done') {
+      // Get this url from response in real world.
+      this.getBase64(info.file.originFileObj, imageUrl =>
+        this.setState({
+          imageUrl,
+          loading: false
+        })
+      );
+    }
+  };
   submit = () => {
     console.log(this.state.content); //rich text
     console.log(this.state.tagList); //taglist
@@ -77,16 +110,22 @@ class BlogEdit extends React.Component {
     api_postEssay({
       title: this.state.title,
       intro: this.state.intro,
-      tag:JSON.stringify(this.state.tagList),
+      tag: JSON.stringify(this.state.tagList),
       type: this.state.type,
       content: this.state.content,
       intro: this.state.intro
     }).then(res => {
-      console.log(res)
+      console.log(res);
     });
   };
   componentDidMount() {}
   render() {
+     const uploadButton = (
+      <div>
+        <Icon type={this.state.loading ? 'loading' : 'plus'} />
+        <div className="ant-upload-text">Upload</div>
+      </div>
+    );
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="blog_edit">
@@ -96,9 +135,23 @@ class BlogEdit extends React.Component {
         <div className="blog_edit_form">
           <Form>
             <div className="title_n_intro">
-              <div className="title">
-                <Form.Item label="标 题:">
-                  {/* {getFieldDecorator('title', {
+              <div className="title_n_intro_left">
+                <Upload
+                  name="avatar"
+                  listType="picture-card"
+                  className="avatar-uploader"
+                  showUploadList={false}
+                  action="http://192.168.1.73:8866/api/essay/fileUpload"
+                  beforeUpload={this.beforeUpload}
+                  onChange={this.handleChange}
+                >
+                  {this.state.imageUrl ? <img src={this.state.imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+                </Upload>
+              </div>
+              <div className="title_n_intro_right">
+                <div className="title">
+                  <Form.Item>
+                    {/* {getFieldDecorator('title', {
                     rules: [
                       {
                         required: true,
@@ -116,18 +169,19 @@ class BlogEdit extends React.Component {
                       onChange={this.titleChange}
                     />
                   )} */}
-                  <Input
-                    placeholder="请输入文章标题"
-                    type="text"
-                    maxLength={16}
-                    value={this.state.title}
-                    onChange={this.titleChange}
-                  />
-                </Form.Item>
-              </div>
-              <div className="intro">
-                <Form.Item label="简 介:">
-                  {/* {getFieldDecorator('intro', {
+                    <Input
+                      placeholder="请输入文章标题"
+                      type="text"
+                      maxLength={16}
+                      value={this.state.title}
+                      onChange={this.titleChange}
+                      style={{ width: 400 }}
+                    />
+                  </Form.Item>
+                </div>
+                <div className="intro">
+                  <Form.Item>
+                    {/* {getFieldDecorator('intro', {
                     rules: [
                       {
                         required: true,
@@ -136,12 +190,18 @@ class BlogEdit extends React.Component {
                       }
                     ]
                   })(<TextArea rows={3} placeholder="请输入文章简介"></TextArea>)} */}
-                  <TextArea rows={3} placeholder="请输入文章简介" onChange={this.introChange}></TextArea>
-                </Form.Item>
+                    <TextArea
+                      rows={3}
+                      placeholder="请输入文章简介"
+                      onChange={this.introChange}
+                      style={{ width: 400 }}
+                    ></TextArea>
+                  </Form.Item>
+                </div>
               </div>
             </div>
             <div className="blog_edit_main">
-              <Form.Item label="正 文:">
+              <Form.Item>
                 {/* {
                   (getFieldDecorator('content', {
                     rules: [
