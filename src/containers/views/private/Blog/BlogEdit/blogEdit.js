@@ -141,7 +141,7 @@ class BlogEdit extends React.Component {
                   listType="picture-card"
                   className="avatar-uploader"
                   showUploadList={false}
-                  action="http://192.168.1.73:8866/api/essay/fileUpload"
+                  action="http://122.51.209.172:8888/api/essay/fileUpload"
                   beforeUpload={this.beforeUpload}
                   onChange={this.handleChange}
                 >

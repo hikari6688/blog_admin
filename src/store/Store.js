@@ -12,12 +12,6 @@ class Todo {
   change = () => {
     this.title = 'titieChange';
   };
-  @action load = async () => {
-    const data = await getData();
-    runInAction(() => {
-      this.name = data.name;
-    });
-  };
 }
 // export default{
 //   Todo:new Todo()

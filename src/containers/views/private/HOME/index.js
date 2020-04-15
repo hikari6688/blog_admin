@@ -1,12 +1,12 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import './home.css';
-const { SubMenu } = Menu;
 import Main from '../Main/main';
 import SiderMenu from '../../../../components/Sider/index';
 import Crumbs from '../../../../components/Crumb/crumbs';
 import TopNav from '../../../../components/TopNav/topNav';
 const { Header, Content, Footer, Sider } = Layout;
+const { SubMenu } = Menu;
 class Home extends React.Component {
   constructor(props) {
     super(props);

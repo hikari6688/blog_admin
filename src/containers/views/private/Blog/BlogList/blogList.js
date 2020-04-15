@@ -2,8 +2,8 @@ import React from 'react';
 import { Table } from 'antd';
 import { Button, Icon, Divider, Tag, Input, Select, Popconfirm, message } from 'antd';
 import { BrowserRouter as Router, Switch, Route, Link  } from 'react-router-dom';
-const { Option } = Select;
 import './BlogList.css';
+const { Option } = Select;
 class Blog extends React.Component {
   constructor(props) {
     super(props);
