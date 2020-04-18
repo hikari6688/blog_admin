@@ -13,8 +13,12 @@ class Todo {
     this.title = 'titieChange';
   };
 }
-// export default{
-//   Todo:new Todo()
-// }
+class Config{
+  // uploadUrl='http://192.168.5.106:8866/api/essay/fileUpload'
+  uploadUrl='http://122.51.209.172:8888/api/essay/fileUpload'
+}
 
-export default new Todo();
+const todo=new Todo();
+const config=new Config();
+export default {todo,config}
+

@@ -137,7 +137,7 @@ class BlogEdit extends React.Component {
             <div className="title_n_intro">
               <div className="title_n_intro_left">
                 <Upload
-                  name="avatar"
+                  name="file"
                   listType="picture-card"
                   className="avatar-uploader"
                   showUploadList={false}

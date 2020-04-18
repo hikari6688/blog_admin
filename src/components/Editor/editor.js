@@ -2,7 +2,7 @@ import React from 'react';
 import E from 'wangeditor'; //富文本编辑器
 import { inject, observer, action } from 'mobx-react';
 import './editor.css'
-@inject('store','a')
+@inject('store')
 @observer
 class Editorx extends React.Component {
   constructor(props) {
@@ -29,16 +29,10 @@ class Editorx extends React.Component {
     this.setParams('artical', e.target.value);
   };
   changeState = () => {
-    store.change();
     console.log(store.title);
   };
   componentDidMount = value => {
-    const { store } = this.props;
-     console.log(store)
-    // this.changeState();
-    console.log(store.title);
-    store.change();
-    console.log(store.title);
+    const  { store }= this.props;
     const elemMenu = this.refs.editorElemMenu;
     const elemBody = this.refs.editorElemBody;
     const editor = new E(elemMenu, elemBody);
@@ -70,13 +64,13 @@ class Editorx extends React.Component {
       'redo' // 重复
     ];
     editor.customConfig.uploadImgShowBase64 = true;
-    editor.customConfig.uploadImgServer = 'https://gtacms.gtarcade.com/backend/editor/index?action=uploadimage'; // 上传图片到服务器
+    editor.customConfig.uploadImgServer = store.config.uploadUrl; // 上传图片到服务器
     // 3M
     editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
     // 限制一次最多上传 5 张图片
     editor.customConfig.uploadImgMaxLength = 1;
     // 自定义文件名
-    editor.customConfig.uploadFileName = 'editor_img';
+    editor.customConfig.uploadFileName = 'file';
     // 将 timeout 时间改为 3s
     editor.customConfig.uploadImgTimeout = 5000;
 
@@ -92,11 +86,11 @@ class Editorx extends React.Component {
         // alert("前奏");
       },
       success: function(xhr, editor, result) {
+        console.log(result)
         // 图片上传并返回结果，图片插入成功之后触发
         // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
-        // var url = result.data.url;
-        // alert(JSON.stringify(url));
-        // editor.txt.append(url);
+        var url = result.data.imgurl;
+        editor.txt.append(`<img src="${ url }" style="display: block;"  alt="">`);
         // alert("成功");
       },
       fail: function(xhr, editor, result) {
@@ -112,6 +106,7 @@ class Editorx extends React.Component {
       // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
       // （但是，服务器端返回的必须是一个 JSON 格式字符串！！！否则会报错）
       customInsert: function(insertImg, result, editor) {
+        console.log(2333)
         // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
         // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
         // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
