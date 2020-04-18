@@ -20,6 +20,7 @@ class BlogEdit extends React.Component {
       intro: '', //简介
       loading: false,
       imageUrl: '', //封面
+      cover:'',//封面
     };
     this.colorMap = ['#f50', '#2db7f5', '#87d068'];
     this.saveInputRef = (el) => (this.t_put = el);
@@ -88,6 +89,7 @@ class BlogEdit extends React.Component {
     return isJpgOrPng && isLt2M;
   };
   handleChange = (info) => {
+    const remote=info.file.response;
     if (info.file.status === 'uploading') {
       this.setState({ loading: true });
       return;
@@ -98,6 +100,7 @@ class BlogEdit extends React.Component {
         this.setState({
           imageUrl,
           loading: false,
+          cover:remote.data.imgurl
         })
       );
     }
@@ -114,6 +117,7 @@ class BlogEdit extends React.Component {
       type: this.state.type,
       content: this.state.content,
       intro: this.state.intro,
+      cover:this.state.cover
     }).then((res) => {
       message.success('文章发布成功!');
       setTimeout(() => {
