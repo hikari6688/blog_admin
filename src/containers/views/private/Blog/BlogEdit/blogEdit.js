@@ -19,10 +19,10 @@ class BlogEdit extends React.Component {
       type: '', //类型
       intro: '', //简介
       loading: false,
-      imageUrl:''//封面
+      imageUrl: '', //封面
     };
     this.colorMap = ['#f50', '#2db7f5', '#87d068'];
-    this.saveInputRef = el => (this.t_put = el);
+    this.saveInputRef = (el) => (this.t_put = el);
   }
   addTag = () => {
     let { tagList } = this.state;
@@ -36,7 +36,7 @@ class BlogEdit extends React.Component {
     tagList.splice(index, 1);
     this.setState(
       {
-        tagList
+        tagList,
       },
       () => {
         console.log(this.state.tagList);
@@ -51,24 +51,24 @@ class BlogEdit extends React.Component {
       this.setState({ inputVisible: true }, () => this.t_put.focus());
     }
   };
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     this.setState({ tagValue: e.target.value });
   };
-  onChange = value => {
+  onChange = (value) => {
     console.log(`selected ${value}`);
     this.setState({ type: value });
   };
 
-  onSearch = val => {
+  onSearch = (val) => {
     console.log('search:', val);
   };
-  getMessage = val => {
+  getMessage = (val) => {
     this.setState({ content: val });
   };
-  titleChange = e => {
+  titleChange = (e) => {
     this.setState({ title: e.target.value });
   };
-  introChange = e => {
+  introChange = (e) => {
     this.setState({ intro: e.target.value });
   };
   getBase64 = (img, callback) => {
@@ -76,7 +76,7 @@ class BlogEdit extends React.Component {
     reader.addEventListener('load', () => callback(reader.result));
     reader.readAsDataURL(img);
   };
-  beforeUpload = file => {
+  beforeUpload = (file) => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
     if (!isJpgOrPng) {
       message.error('You can only upload JPG/PNG file!');
@@ -87,17 +87,17 @@ class BlogEdit extends React.Component {
     }
     return isJpgOrPng && isLt2M;
   };
-  handleChange = info => {
+  handleChange = (info) => {
     if (info.file.status === 'uploading') {
       this.setState({ loading: true });
       return;
     }
     if (info.file.status === 'done') {
       // Get this url from response in real world.
-      this.getBase64(info.file.originFileObj, imageUrl =>
+      this.getBase64(info.file.originFileObj, (imageUrl) =>
         this.setState({
           imageUrl,
-          loading: false
+          loading: false,
         })
       );
     }
@@ -113,14 +113,17 @@ class BlogEdit extends React.Component {
       tag: JSON.stringify(this.state.tagList),
       type: this.state.type,
       content: this.state.content,
-      intro: this.state.intro
-    }).then(res => {
-      console.log(res);
+      intro: this.state.intro,
+    }).then((res) => {
+      message.success('文章发布成功!');
+      setTimeout(() => {
+        this.props.history.goBack();
+      }, 1000);
     });
   };
   componentDidMount() {}
   render() {
-     const uploadButton = (
+    const uploadButton = (
       <div>
         <Icon type={this.state.loading ? 'loading' : 'plus'} />
         <div className="ant-upload-text">Upload</div>
@@ -169,14 +172,7 @@ class BlogEdit extends React.Component {
                       onChange={this.titleChange}
                     />
                   )} */}
-                    <Input
-                      placeholder="请输入文章标题"
-                      type="text"
-                      maxLength={16}
-                      value={this.state.title}
-                      onChange={this.titleChange}
-                      style={{ width: 400 }}
-                    />
+                    <Input placeholder="请输入文章标题" type="text" maxLength={16} value={this.state.title} onChange={this.titleChange} style={{ width: 400 }} />
                   </Form.Item>
                 </div>
                 <div className="intro">
@@ -190,12 +186,7 @@ class BlogEdit extends React.Component {
                       }
                     ]
                   })(<TextArea rows={3} placeholder="请输入文章简介"></TextArea>)} */}
-                    <TextArea
-                      rows={3}
-                      placeholder="请输入文章简介"
-                      onChange={this.introChange}
-                      style={{ width: 400 }}
-                    ></TextArea>
+                    <TextArea rows={3} placeholder="请输入文章简介" onChange={this.introChange} style={{ width: 400 }}></TextArea>
                   </Form.Item>
                 </div>
               </div>
@@ -263,9 +254,7 @@ class BlogEdit extends React.Component {
                     optionFilterProp="children"
                     onChange={this.onChange}
                     onSearch={this.onSearch}
-                    filterOption={(input, option) =>
-                      option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
+                    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                   >
                     <Option value="1">前端</Option>
                     <Option value="2">语言</Option>
